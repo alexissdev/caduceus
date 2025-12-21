@@ -1,31 +1,37 @@
 package dev.alexissdev.caduceus.api.user.loader;
 
+import dev.alexissdev.caduceus.api.user.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
- * Service interface for loading user information based on unique identifiers.
- * Provides methods to retrieve user details using string-based or UUID-based identifiers.
+ * Service interface for loading user data.
+ * Provides methods to retrieve {@link User} instances asynchronously using various identifiers.
  */
 
 public interface UserLoaderService {
 
-    /**
-     * Loads the user information based on the provided unique user identifier.
-     *
-     * @param userId the unique identifier for the user to be loaded; must not be null
-     */
-
-    void loadById(@NotNull String userId);
 
     /**
-     * Loads the user information based on the provided unique user identifier in the form of a UUID.
+     * Loads a user by their unique identifier.
      *
-     * @param userUuid the unique user identifier as a UUID; must not be null
+     * @param userId the ID of the user to be loaded; must not be null
+     * @return a CompletableFuture containing the user associated with the given ID
      */
 
-    default void loadById(UUID userUuid) {
-        loadById(userUuid.toString());
+    CompletableFuture<User> loadById(@NotNull String userId);
+
+    /**
+     * Loads a user by their unique identifier (UUID).
+     *
+     * @param userUuid the UUID of the user to be loaded
+     * @return a CompletableFuture containing the user associated with the given UUID
+     */
+
+
+    default CompletableFuture<User> loadById(UUID userUuid) {
+        return loadById(userUuid.toString());
     }
 }

@@ -1,12 +1,12 @@
 package dev.alexissdev.caduceus.api.user.statistic;
 
 import dev.alexissdev.caduceus.api.statistic.Statistic;
+import dev.alexissdev.storage.mongo.codec.DocumentCodec;
+import dev.alexissdev.storage.mongo.codec.DocumentWriter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.bson.Document;
-import team.unnamed.pixel.storage.mongo.codec.DocumentCodec;
-import team.unnamed.pixel.storage.mongo.codec.DocumentWriter;
 
 @Data
 @AllArgsConstructor
