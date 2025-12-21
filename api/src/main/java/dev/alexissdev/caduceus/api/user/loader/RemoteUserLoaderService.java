@@ -1,6 +1,7 @@
 package dev.alexissdev.caduceus.api.user.loader;
 
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.http.routes.ApiRoutes;
 import dev.alexissdev.caduceus.api.user.User;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -58,7 +59,7 @@ public class RemoteUserLoaderService
     public CompletableFuture<User> loadById(@NotNull String userId) {
         CompletableFuture<User> future = new CompletableFuture<>();
         Request request = new Request.Builder()
-                .url(httpConfiguration.getBaseUrl() + "/api/v1/users/" + userId)
+                .url(httpConfiguration.getBaseUrl() + ApiRoutes.userById(userId))
                 .get()
                 .build();
 

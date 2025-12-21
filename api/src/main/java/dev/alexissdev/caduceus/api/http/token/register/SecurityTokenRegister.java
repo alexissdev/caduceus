@@ -1,6 +1,7 @@
 package dev.alexissdev.caduceus.api.http.token.register;
 
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.http.routes.ApiRoutes;
 import dev.alexissdev.caduceus.api.http.token.SecurityToken;
 import dev.alexissdev.caduceus.api.http.token.checker.SecurityTokenExpirationChecker;
 import dev.alexissdev.caduceus.api.http.token.updater.SecurityTokenUpdater;
@@ -58,7 +59,7 @@ public class SecurityTokenRegister {
         }
 
         RequestBody body = RequestBody.create(gson.toJson(httpConfiguration.getServerCredentials()), APPLICATION_JSON);
-        Request request = new Request.Builder().url(httpConfiguration.getBaseUrl() + "/auth/login").post(body).build();
+        Request request = new Request.Builder().url(httpConfiguration.getBaseUrl() + ApiRoutes.AUTH_LOGIN).post(body).build();
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {

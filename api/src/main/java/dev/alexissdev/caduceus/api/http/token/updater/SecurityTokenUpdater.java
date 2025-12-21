@@ -2,6 +2,7 @@ package dev.alexissdev.caduceus.api.http.token.updater;
 
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
 import dev.alexissdev.caduceus.api.http.response.LoginResponse;
+import dev.alexissdev.caduceus.api.http.routes.ApiRoutes;
 import dev.alexissdev.caduceus.api.http.token.SecurityToken;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -47,7 +48,7 @@ public class SecurityTokenUpdater {
                     RequestBody.create(gson.toJson(new LoginResponse(null, securityToken.getRefreshToken())), APPLICATION_JSON);
 
             Request request = new Request.Builder()
-                    .url(httpConfiguration.getBaseUrl() + "/auth/refresh")
+                    .url(httpConfiguration.getBaseUrl() + ApiRoutes.AUTH_REFRESH)
                     .post(body)
                     .build();
 
