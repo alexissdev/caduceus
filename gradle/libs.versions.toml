@@ -1,0 +1,30 @@
+[versions]
+spigot = "1.8.8-R0.1-SNAPSHOT"
+commons-bukkit = "0.0.1"
+inject = "1.0.1"
+message-core = "7.0.0"
+message-bukkit = "7.0.0"
+storage-mongo = "v2.2.0"
+storage-yaml = "v2.2.0"
+command = "0.5.2"
+
+[libraries]
+# The spigot library
+spigot = { group = "org.spigotmc", name = "spigot-api", version = "${spigot}" }
+
+# The injector library
+inject = { group = "team.unnamed", name = "inject", version = "${injector}" }
+
+# The storage library
+storage-mongo = { group = "com.github.pixeldev.storage", name = "storage-mongo-legacy-dist", version = "${storage-mongo}" }
+storage-yaml = { group = "com.github.pixeldev.storage", name = "storage-bukkit-yaml-dist", version = "${storage-yaml}" }
+
+# The command library
+command = { group = "me.fixeddev", name = "commandflow-bukkit", version = "${command}" }
+
+# The message library
+message-core = { group = "me.yushust.message", name = "core", version = "${message-core}" }
+message-bukkit = { group = "me.yushust.message", name = "sourcetype-bukkit-ym", version = "${message-core}" }
+
+# The commons library
+commons-bukkit = { group = "dev.alexisdev", name = "commons-bukkit", version = "${commons-bukkit}" }
