@@ -8,6 +8,8 @@ storage-mongo = "v2.2.0"
 storage-yaml = "v2.2.0"
 command = "0.5.2"
 
+http = "4.11.0"
+
 [libraries]
 # The spigot library
 spigot = { group = "org.spigotmc", name = "spigot-api", version = "${spigot}" }
@@ -28,3 +30,6 @@ message-bukkit = { group = "me.yushust.message", name = "sourcetype-bukkit-ym", 
 
 # The commons library
 commons-bukkit = { group = "dev.alexisdev", name = "commons-bukkit", version = "${commons-bukkit}" }
+
+# http
+http = {group = "com.squareup.okhttp3", name = "okhttp", version = "${http}"}
