@@ -1,6 +1,8 @@
 package dev.alexissdev.caduceus.api.user.module;
 
 import dev.alexissdev.caduceus.api.user.User;
+import dev.alexissdev.caduceus.api.user.creator.RemoteUserCreatorService;
+import dev.alexissdev.caduceus.api.user.creator.UserCreatorService;
 import dev.alexissdev.caduceus.api.user.loader.RemoteUserLoaderService;
 import dev.alexissdev.caduceus.api.user.loader.UserLoaderService;
 import dev.alexissdev.caduceus.api.user.sync.RemoteUserSyncService;
@@ -19,12 +21,12 @@ public class UserModule
     protected void configure() {
         bind(UserLoaderService.class).to(RemoteUserLoaderService.class).singleton();
         bind(UserSyncService.class).to(RemoteUserSyncService.class).singleton();
+        bind(UserCreatorService.class).to(RemoteUserCreatorService.class).singleton();
     }
 
     @Provides
     @Singleton
     public ModelService<User> provideModelService() {
-        System.out.println("Creating model service...");
         return LocalModelService.concurrent();
     }
 
