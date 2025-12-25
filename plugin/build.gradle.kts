@@ -8,6 +8,9 @@ dependencies {
     compileOnly(libs.spigot)
 
     implementation(libs.command)
+    implementation(libs.message.core)
+    implementation(libs.message.bukkit)
+    implementation(project(":api"))
 }
 
 tasks {
@@ -23,7 +26,7 @@ tasks {
 
 bukkit {
     val projectName = "${findProperty("plugin-name")}"
-    main = "dev.alexisdev.${projectName.toLowerCase()}.${projectName}Plugin"
+    main = "dev.alexissdev.${projectName.toLowerCase()}.plugin.${projectName}Plugin"
     apiVersion = "1.13"
     version = "${project.version}"
     authors = listOf("AlexisDev")

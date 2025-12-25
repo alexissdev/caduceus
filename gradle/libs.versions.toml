@@ -4,16 +4,18 @@ commons-bukkit = "0.0.1"
 inject = "1.0.1"
 message-core = "7.0.0"
 message-bukkit = "7.0.0"
-storage-mongo = "1.0.0"
+storage-api = "1.0.0"
 command = "0.6.0"
 http = "4.11.0"
+gson = "2.10.1"
 
 [libraries]
 spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
 inject = { group = "team.unnamed", name = "inject", version.ref = "inject" }
-storage-mongo = { group = "dev.alexissdev", name = "mongo-legacy-dist", version.ref = "storage-mongo" }
+storage-api = { group = "dev.alexissdev", name = "api", version.ref = "storage-api" }
 command = { group = "me.fixeddev", name = "commandflow-bukkit", version.ref = "command" }
 message-core = { group = "me.yushust.message", name = "core", version.ref = "message-core" }
 message-bukkit = { group = "me.yushust.message", name = "sourcetype-bukkit-yml", version.ref = "message-bukkit" }
 commons-bukkit = { group = "dev.alexisdev", name = "commons-bukkit", version.ref = "commons-bukkit" }
 http = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "http" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}

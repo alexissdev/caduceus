@@ -1,0 +1,4 @@
+url: http://localhost:8080
+credentials:
+  username: server01
+  password: server01
