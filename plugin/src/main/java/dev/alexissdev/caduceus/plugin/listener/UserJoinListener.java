@@ -1,9 +1,9 @@
 package dev.alexissdev.caduceus.plugin.listener;
 
+import dev.alexissdev.caduceus.api.http.exception.HttpException;
 import dev.alexissdev.caduceus.api.user.User;
-import dev.alexissdev.caduceus.api.user.economy.UserEconomy;
+import dev.alexissdev.caduceus.api.user.creator.UserCreatorService;
 import dev.alexissdev.caduceus.api.user.loader.UserLoaderService;
-import dev.alexissdev.caduceus.api.user.statistic.UserStatistic;
 import dev.alexissdev.storage.ModelService;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +13,6 @@ import org.bukkit.plugin.Plugin;
 
 import javax.inject.Inject;
 import java.util.logging.Logger;
-
-import static dev.alexissdev.caduceus.api.user.User.DEFAULT_LANGUAGE;
 
 /**
  * Event listener that handles user data loading and persistence when a player joins the server.
@@ -32,6 +30,8 @@ public class UserJoinListener
     @Inject
     private UserLoaderService userLoaderService;
     @Inject
+    private UserCreatorService userCreatorService;
+    @Inject
     private ModelService<User> userModelService;
     @Inject
     private Logger logger;
@@ -44,18 +44,23 @@ public class UserJoinListener
         userLoaderService.loadById(player.getUniqueId())
                 .thenAccept(userModelService::saveSync)
                 .exceptionally(exception -> {
-                    plugin.getServer().getScheduler().runTask(plugin, () -> {
-                        User newUser = User.builder()
-                                .id(player.getUniqueId().toString())
-                                .name(player.getName())
-                                .language(DEFAULT_LANGUAGE)
-                                .statistic(UserStatistic.initial())
-                                .economy(UserEconomy.initial())
-                                .build();
-                        userModelService.saveSync(newUser);
+                    if (!(exception.getCause() instanceof HttpException)) {
+                        return null;
+                    }
 
-                        logger.info("Register new user " + player.getName() + " with id " + newUser.getId());
-                    });
+                    HttpException httpException = (HttpException) exception.getCause();
+                    if (httpException.getStatus() != 404) {
+                        logger.severe("Failed to load user " + player.getName()
+                                + " - HTTP " + httpException.getStatus());
+                        return null;
+                    }
+
+                    userCreatorService.create(player.getUniqueId(), player.getName()).thenAccept(response ->
+                            plugin.getServer().getScheduler().runTask(plugin, () -> {
+                                userModelService.saveSync(User.fromResponse(response));
+
+                                logger.info("Register new user " + player.getName());
+                            }));
                     return null;
                 });
     }

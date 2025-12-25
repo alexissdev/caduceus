@@ -2,6 +2,7 @@ package dev.alexissdev.caduceus.api.user.creator;
 
 import com.google.gson.Gson;
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.http.exception.HttpException;
 import dev.alexissdev.caduceus.api.http.request.CreateUserRequest;
 import dev.alexissdev.caduceus.api.http.request.factory.RequestFactory;
 import dev.alexissdev.caduceus.api.http.response.UserResponse;
@@ -81,8 +82,7 @@ public class RemoteUserCreatorService
             public void onResponse(@NotNull Call call, @NotNull Response response) {
                 try {
                     if (!response.isSuccessful()) {
-                        future.completeExceptionally(
-                                new RuntimeException("Failed to create user with id " + id + " - HTTP " + response.code()));
+                        future.completeExceptionally(new HttpException(response.code()));
                         return;
                     }
 

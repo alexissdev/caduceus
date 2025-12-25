@@ -1,6 +1,7 @@
 package dev.alexissdev.caduceus.api.user.loader;
 
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.http.exception.HttpException;
 import dev.alexissdev.caduceus.api.http.request.factory.RequestFactory;
 import dev.alexissdev.caduceus.api.http.response.UserResponse;
 import dev.alexissdev.caduceus.api.http.routes.ApiRoutes;
@@ -76,9 +77,7 @@ public class RemoteUserLoaderService
             public void onResponse(@NotNull Call call, @NotNull Response response) {
                 try {
                     if (!response.isSuccessful()) {
-                        future.completeExceptionally(
-                                new RuntimeException("HTTP " + response.code())
-                        );
+                        future.completeExceptionally(new HttpException(response.code()));
                         return;
                     }
 
