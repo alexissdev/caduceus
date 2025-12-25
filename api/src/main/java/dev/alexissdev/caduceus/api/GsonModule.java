@@ -1,6 +1,6 @@
 package dev.alexissdev.caduceus.api;
 
-import org.gradle.internal.impldep.com.google.gson.Gson;
+import com.google.gson.Gson;
 import team.unnamed.inject.AbstractModule;
 import team.unnamed.inject.Provides;
 

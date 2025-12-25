@@ -1,6 +1,6 @@
 package dev.alexissdev.caduceus.api.http.token.checker;
 
-import org.gradle.internal.impldep.com.google.gson.Gson;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 import java.util.Base64;

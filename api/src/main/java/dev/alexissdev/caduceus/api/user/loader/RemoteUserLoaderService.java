@@ -1,6 +1,8 @@
 package dev.alexissdev.caduceus.api.user.loader;
 
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.http.request.factory.RequestFactory;
+import dev.alexissdev.caduceus.api.http.response.UserResponse;
 import dev.alexissdev.caduceus.api.http.routes.ApiRoutes;
 import dev.alexissdev.caduceus.api.user.User;
 import okhttp3.Call;
@@ -8,7 +10,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.gradle.internal.impldep.com.google.gson.Gson;
+import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
@@ -53,13 +55,14 @@ public class RemoteUserLoaderService
     @Inject
     private HttpConfiguration httpConfiguration;
     @Inject
-    private Executor executor;
+    private RequestFactory requestFactory;
 
     @Override
     public CompletableFuture<User> loadById(@NotNull String userId) {
         CompletableFuture<User> future = new CompletableFuture<>();
-        Request request = new Request.Builder()
-                .url(httpConfiguration.getBaseUrl() + ApiRoutes.userById(userId))
+
+        Request request = requestFactory.createAuthorizedRequest(
+                        httpConfiguration.getBaseUrl() + ApiRoutes.userById(userId))
                 .get()
                 .build();
 
@@ -80,8 +83,8 @@ public class RemoteUserLoaderService
                     }
 
                     String json = response.body().string();
-                    User user = gson.fromJson(json, User.class);
-                    future.complete(user);
+                    UserResponse userResponse = gson.fromJson(json, UserResponse.class);
+                    future.complete(User.fromResponse(userResponse));
 
                 } catch (Exception e) {
                     future.completeExceptionally(e);

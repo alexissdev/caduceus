@@ -4,9 +4,8 @@ plugins {
 
 dependencies {
     api(libs.commons.bukkit)
-    implementation(libs.inject)
-    implementation(libs.message.core)
-    implementation(libs.message.bukkit)
-    implementation(libs.storage.mongo)
-    implementation(libs.http)
+    api(libs.inject)
+    api(libs.storage.api)
+    api(libs.http)
+    api(libs.gson)
 }

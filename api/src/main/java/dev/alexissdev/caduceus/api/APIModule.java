@@ -2,6 +2,7 @@ package dev.alexissdev.caduceus.api;
 
 import dev.alexissdev.caduceus.api.http.HttpModule;
 import dev.alexissdev.caduceus.api.http.configuration.HttpConfiguration;
+import dev.alexissdev.caduceus.api.user.module.UserModule;
 import team.unnamed.inject.AbstractModule;
 
 
@@ -33,5 +34,7 @@ public class APIModule
         install(new ExecutorModule());
         install(new GsonModule());
         install(new HttpModule(httpConfiguration));
+
+        install(new UserModule());
     }
 }
