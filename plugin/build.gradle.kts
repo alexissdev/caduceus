@@ -10,6 +10,7 @@ dependencies {
     implementation(libs.command)
     implementation(libs.message.core)
     implementation(libs.message.bukkit)
+    implementation(libs.storage.bukkit)
     implementation(project(":api"))
 }
 

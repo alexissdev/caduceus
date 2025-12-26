@@ -1,9 +1,12 @@
 package dev.alexissdev.caduceus.plugin;
 
 import dev.alexissdev.caduceus.api.APIModule;
+import dev.alexissdev.caduceus.plugin.configuration.module.ConfigurationModule;
 import dev.alexissdev.caduceus.plugin.http.HttpConfigurationProvider;
 import dev.alexissdev.caduceus.plugin.listener.module.ListenerModule;
 import dev.alexissdev.caduceus.plugin.service.module.ServiceModule;
+import dev.alexissdev.caduceus.plugin.spawn.module.SpawnModule;
+import dev.alexissdev.caduceus.plugin.translation.TranslationModule;
 import org.bukkit.plugin.Plugin;
 import team.unnamed.inject.AbstractModule;
 
@@ -24,6 +27,9 @@ public class PluginModule
         bind(Logger.class).toInstance(plugin.getLogger());
         install(new APIModule(HttpConfigurationProvider.provideConfiguration(plugin)));
 
+        install(new ConfigurationModule());
+        install(new TranslationModule());
+        install(new SpawnModule());
         install(new ListenerModule());
         install(new ServiceModule());
     }
