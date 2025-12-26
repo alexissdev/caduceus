@@ -40,10 +40,12 @@ public class UserQuitListener
             throw new IllegalStateException("User not found for player " + player.getName());
         }
 
-        userSyncService.sync(userModelService.findSync(player.getUniqueId().toString())).thenRun(() ->
-                        userModelService.deleteSync(player.getUniqueId().toString()))
+        userSyncService.sync(user)
+                .thenAccept((result) -> {
+                    userModelService.deleteSync(player.getUniqueId().toString());
+                })
                 .exceptionally(throwable -> {
-                    logger.log(Level.SEVERE, "Failed to sync user data for player " + player.getName(), throwable);
+                    logger.log(Level.SEVERE, "Failed to sync user data for player " + user.getUsername(), throwable);
                     return null;
                 });
     }

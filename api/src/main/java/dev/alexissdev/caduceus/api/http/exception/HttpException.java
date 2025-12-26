@@ -1,6 +1,5 @@
 package dev.alexissdev.caduceus.api.http.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -10,9 +9,18 @@ import lombok.Getter;
  */
 
 @Getter
-@AllArgsConstructor
 public class HttpException
         extends RuntimeException {
 
     private final int status;
+
+    public HttpException(int status) {
+        super();
+        this.status = status;
+    }
+
+    public HttpException(int status, String message) {
+        super(message);
+        this.status = status;
+    }
 }

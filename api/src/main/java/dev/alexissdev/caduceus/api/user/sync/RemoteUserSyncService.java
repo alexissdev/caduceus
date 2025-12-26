@@ -52,7 +52,10 @@ public class RemoteUserSyncService
             public void onResponse(@NotNull Call call, @NotNull Response response) {
                 try {
                     if (!response.isSuccessful()) {
-                        future.completeExceptionally(new HttpException(response.code()));
+                        future.completeExceptionally(new HttpException(
+                                response.code(),
+                                "Failed to sync user " + user.getUsername() + " - HTTP " + response.code()
+                        ));
                         return;
                     }
 

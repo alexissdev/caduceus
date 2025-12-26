@@ -68,7 +68,7 @@ public class RemoteUserCreatorService
 
         RequestBody body = RequestBody.create(json, HttpConfiguration.APPLICATION_JSON);
         Request request = requestFactory.createAuthorizedRequest(
-                        httpConfiguration.getBaseUrl() + ApiRoutes.USERS).post(body)
+                        httpConfiguration.getBaseUrl() + ApiRoutes.USERS)
                 .post(body)
                 .build();
 
