@@ -1,5 +1,6 @@
 package dev.alexissdev.caduceus.plugin.listener.module;
 
+import dev.alexissdev.caduceus.plugin.listener.PlayerDeathListener;
 import dev.alexissdev.caduceus.plugin.listener.UserJoinListener;
 import dev.alexissdev.caduceus.plugin.listener.UserQuitListener;
 import org.bukkit.event.Listener;
@@ -13,6 +14,7 @@ public class ListenerModule
         multibind(Listener.class).asSet()
                 .to(UserJoinListener.class)
                 .to(UserQuitListener.class)
+                .to(PlayerDeathListener.class)
                 .singleton();
     }
 }

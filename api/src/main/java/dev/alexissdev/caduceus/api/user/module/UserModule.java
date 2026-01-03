@@ -7,6 +7,8 @@ import dev.alexissdev.caduceus.api.user.loader.RemoteUserLoaderService;
 import dev.alexissdev.caduceus.api.user.loader.UserLoaderService;
 import dev.alexissdev.caduceus.api.user.sync.RemoteUserSyncService;
 import dev.alexissdev.caduceus.api.user.sync.UserSyncService;
+import dev.alexissdev.caduceus.api.user.update.LocalUserStatisticUpdater;
+import dev.alexissdev.caduceus.api.user.update.UserStatisticUpdater;
 import dev.alexissdev.storage.ModelService;
 import dev.alexissdev.storage.dist.LocalModelService;
 import team.unnamed.inject.AbstractModule;
@@ -22,6 +24,7 @@ public class UserModule
         bind(UserLoaderService.class).to(RemoteUserLoaderService.class).singleton();
         bind(UserSyncService.class).to(RemoteUserSyncService.class).singleton();
         bind(UserCreatorService.class).to(RemoteUserCreatorService.class).singleton();
+        bind(UserStatisticUpdater.class).to(LocalUserStatisticUpdater.class).singleton();
     }
 
     @Provides
