@@ -1,3 +1,3 @@
-rootProject.name = "plugin-template"
+rootProject.name = "caduceus"
 
 include("api", "plugin")

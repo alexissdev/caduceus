@@ -4,27 +4,20 @@ commons-bukkit = "0.0.1"
 inject = "1.0.1"
 message-core = "7.0.0"
 message-bukkit = "7.0.0"
-storage-mongo = "v2.2.0"
-storage-yaml = "v2.2.0"
-command = "0.5.2"
+storage-api = "1.0.0"
+storage-bukkit = "1.0.0"
+command = "0.6.0"
+http = "4.11.0"
+gson = "2.10.1"
 
 [libraries]
-# The spigot library
-spigot = { group = "org.spigotmc", name = "spigot-api", version = "${spigot}" }
-
-# The injector library
-inject = { group = "team.unnamed", name = "inject", version = "${injector}" }
-
-# The storage library
-storage-mongo = { group = "com.github.pixeldev.storage", name = "storage-mongo-legacy-dist", version = "${storage-mongo}" }
-storage-yaml = { group = "com.github.pixeldev.storage", name = "storage-bukkit-yaml-dist", version = "${storage-yaml}" }
-
-# The command library
-command = { group = "me.fixeddev", name = "commandflow-bukkit", version = "${command}" }
-
-# The message library
-message-core = { group = "me.yushust.message", name = "core", version = "${message-core}" }
-message-bukkit = { group = "me.yushust.message", name = "sourcetype-bukkit-ym", version = "${message-core}" }
-
-# The commons library
-commons-bukkit = { group = "dev.alexisdev", name = "commons-bukkit", version = "${commons-bukkit}" }
+spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
+inject = { group = "team.unnamed", name = "inject", version.ref = "inject" }
+storage-api = { group = "dev.alexissdev", name = "api", version.ref = "storage-api" }
+storage-bukkit = { group = "dev.alexissdev", name = "bukkit-yaml-dist", version.ref = "storage-bukkit" }
+command = { group = "me.fixeddev", name = "commandflow-bukkit", version.ref = "command" }
+message-core = { group = "me.yushust.message", name = "core", version.ref = "message-core" }
+message-bukkit = { group = "me.yushust.message", name = "sourcetype-bukkit-yml", version.ref = "message-bukkit" }
+commons-bukkit = { group = "dev.alexisdev", name = "commons-bukkit", version.ref = "commons-bukkit" }
+http = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "http" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}
