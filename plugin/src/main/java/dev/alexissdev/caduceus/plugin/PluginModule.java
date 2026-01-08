@@ -1,6 +1,7 @@
 package dev.alexissdev.caduceus.plugin;
 
 import dev.alexissdev.caduceus.api.APIModule;
+import dev.alexissdev.caduceus.plugin.api.module.InternalAPIModule;
 import dev.alexissdev.caduceus.plugin.configuration.module.ConfigurationModule;
 import dev.alexissdev.caduceus.plugin.http.HttpConfigurationProvider;
 import dev.alexissdev.caduceus.plugin.listener.module.ListenerModule;
@@ -26,6 +27,7 @@ public class PluginModule
         bind(Plugin.class).toInstance(plugin);
         bind(Logger.class).toInstance(plugin.getLogger());
         install(new APIModule(HttpConfigurationProvider.provideConfiguration(plugin)));
+        install(new InternalAPIModule());
 
         install(new ConfigurationModule());
         install(new TranslationModule());

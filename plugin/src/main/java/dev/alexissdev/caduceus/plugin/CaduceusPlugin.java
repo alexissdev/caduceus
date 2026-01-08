@@ -1,6 +1,8 @@
 package dev.alexissdev.caduceus.plugin;
 
 import dev.alexissdev.caduceus.api.service.Service;
+import dev.alexissdev.caduceus.plugin.api.CaduceusAPI;
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.unnamed.inject.Injector;
 
@@ -29,6 +31,10 @@ public class CaduceusPlugin
     @Inject
     private Service service;
 
+    @Getter
+    @Inject
+    private CaduceusAPI caduceusAPI;
+
     @Override
     public void onEnable() {
         Injector injector = Injector.create(new PluginModule(this));
@@ -41,4 +47,5 @@ public class CaduceusPlugin
     public void onDisable() {
         service.stop();
     }
+
 }
